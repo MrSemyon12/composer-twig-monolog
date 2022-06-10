@@ -15,7 +15,8 @@ $logger = new Logger('action');
 $streamHandler = new StreamHandler(__DIR__ . '/../src/log/action.log', Logger::INFO);
 $logger->pushHandler($streamHandler);
 
-$messenger = new Messenger($view, $logger);
+$database = new Database();
+$messenger = new Messenger($view, $logger, $database);
 
 if (isset($_GET['login']) && isset($_GET['password']) && isset($_GET['message']))  {
     $lg = (string)$_GET['login'];
